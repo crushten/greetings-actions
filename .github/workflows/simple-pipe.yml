@@ -69,7 +69,11 @@ jobs:
         exit 1
 
   create-issue-on-failure:
+  
     needs: [test-run, count-args]
+    permissions:
+      issues: write 
+      
     if: always() && failure()
     uses: ./.github/workflows/create_issue_failure.yml
     with:
